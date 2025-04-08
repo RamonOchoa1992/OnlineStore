@@ -6,8 +6,11 @@ export const metadata: Metadata = {
   title: 'Tiendas Ramon | Details',
 };
 
-const DetailsPage = async ({ params }: { params: { id: string } }) => {
-  const productById = await getProductsById(params.id);
+type Params = Promise<{ id: string }>;
+
+const DetailsPage = async ({ params }: { params: Params }) => {
+  const { id } = await params;
+  const productById = await getProductsById(id);
   return <Details product={productById} />;
 };
 
